@@ -1,25 +1,24 @@
-function getInput() {
-  const depositeInput = document.getElementById("deposite-input");
-  const depositeAmountText = depositeInput.value;
-  const depositAmount = parseFloat(depositeAmountText);
+function getInput(input_id) {
+  const inputField = document.getElementById(input_id);
+  const inputAmountText = inputField.value;
+  const amountValue = parseFloat(inputAmountText);
   //clear input filed
-  depositeInput.value = "";
-  return depositAmount;
+  inputField.value = "";
+  return amountValue;
 }
 
+function updateTotalField(inputFieldId, Amount) {
+  const totalElement = document.getElementById(inputFieldId);
+  const totalText = totalElement.innerText;
+  const previousTotal = parseFloat(totalText);
+  totalElement.innerText = depositAmount + previousTotal;
+}
 document
   .getElementById("deposite-button")
   .addEventListener("click", function () {
-    // const depositeInput = document.getElementById("deposite-input");
-    // const depositeAmountText = depositeInput.value;
-    // const depositAmount = parseFloat(depositeAmountText);
-    const depositAmount = getInput();
+    const depositAmount = getInput("deposite-input");
 
-    const depositeTotal = document.getElementById("deposite-total");
-    const depositeTotalText = depositeTotal.innerText;
-    const previousDepositeTotal = parseFloat(depositeTotalText);
-    depositeTotal.innerText = depositAmount + previousDepositeTotal;
-
+    updateTotalField("deposite-total", depositAmount);
     //update balance total
     const balanceTotal = document.getElementById("balance-total");
     const balanceTotalText = balanceTotal.innerText;
@@ -30,22 +29,12 @@ document
 document
   .getElementById("withdrow-button")
   .addEventListener("click", function () {
-    const withdrowINput = document.getElementById(" withdrow-input");
-    const withdrowAmountText = withdrowINput.value;
-    const withdrowAmount = parseFloat(withdrowAmountText);
-
+    const withdrowAmount = getInput(" withdrow-input");
     // update withdrowAmount
-    const withdrowTotal = document.getElementById("withdrow-total");
-    const previousWithdrowTotalTExt = withdrowTotal.innerText;
-    const previousWithdrowTotal = parseFloat(previousWithdrowTotalTExt);
-    withdrowTotal.innerText = previousWithdrowTotal + withdrowAmount;
-
+    updateTotalField("withdrow-total", withdrowAmount);
     //update balanceTotal
     const balanceTotal = document.getElementById("balance-total");
     const balanceTotalText = balanceTotal.innerText;
     const previouseBalanceTotal = parseFloat(balanceTotalText);
     balanceTotal.innerText = previouseBalanceTotal - withdrowAmount;
-
-    //clear input filed
-    withdrowINput.value = "";
   });
