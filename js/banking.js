@@ -1,9 +1,19 @@
+function getInput() {
+  const depositeInput = document.getElementById("deposite-input");
+  const depositeAmountText = depositeInput.value;
+  const depositAmount = parseFloat(depositeAmountText);
+  //clear input filed
+  depositeInput.value = "";
+  return depositAmount;
+}
+
 document
   .getElementById("deposite-button")
   .addEventListener("click", function () {
-    const depositeInput = document.getElementById("deposite-input");
-    const depositeAmountText = depositeInput.value;
-    const depositAmount = parseFloat(depositeAmountText);
+    // const depositeInput = document.getElementById("deposite-input");
+    // const depositeAmountText = depositeInput.value;
+    // const depositAmount = parseFloat(depositeAmountText);
+    const depositAmount = getInput();
 
     const depositeTotal = document.getElementById("deposite-total");
     const depositeTotalText = depositeTotal.innerText;
@@ -15,9 +25,6 @@ document
     const balanceTotalText = balanceTotal.innerText;
     const previousBalanceTotal = parseFloat(balanceTotalText);
     balanceTotal.innerText = previousBalanceTotal + depositAmount;
-
-    //clear input filed
-    depositeInput.value = "";
   });
 
 document
